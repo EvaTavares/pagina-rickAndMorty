@@ -1,7 +1,4 @@
-<div>
-  <h1>HOME FUNCIONANDO</h1>
-</div>
-<div class="container">
+<div class="container" *ngIf="characters.length">
   <mat-card class="example-card card" *ngFor="let character of characters">
     <img class="img" mat-card-image [src]="character.image" alt="{{ character.name }} Image">
     <mat-card-header class="box">

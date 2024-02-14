@@ -12,20 +12,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   characters: any[] = [];
   apiServiceSubscription!: Subscription;
 
-  constructor(private apiService: ApiServiceService, ){}
+  constructor(private apiService: ApiServiceService){}
 
   ngOnInit(): void {
     this.getAll();
+    console.log("passou aqui")
   }
 
   // pegando todos os personagens
   getAll(): void{
-    this.apiService.getAllCharacters().subscribe((res)=> {
-      this.characters = res.results
+    this.apiServiceSubscription = this.apiService.getAllCharacters().subscribe((res)=> {
+      this.characters = res.results;
       console.log(this.characters)
     })
   }
-
 
   ngOnDestroy(): void {
     this.apiServiceSubscription && this.apiServiceSubscription.unsubscribe()
