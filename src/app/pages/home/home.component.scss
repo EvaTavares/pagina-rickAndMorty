@@ -1,0 +1,20 @@
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #1B1919;
+}
+
+.card{
+  border: 2px solid green;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 250px;
+  background-color: #00630E;
+}
+
+img{
+  width: 100px;
+  height: 100px;
+  margin-top:5px;
+}
