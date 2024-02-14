@@ -12,7 +12,6 @@ import { ComponentsModule } from '../components/components.module';
   ],
   imports: [
     CommonModule,
-    RouterModule,
     MatCardModule,
     ComponentsModule
   ]
