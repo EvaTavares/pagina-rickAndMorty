@@ -10,6 +10,8 @@ import { ApiServiceService } from 'src/app/shared/services/api-service.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   characters: any[] = [];
+  pageCount: number = 2;
+  location: any;
   apiServiceSubscription!: Subscription;
 
   constructor(private apiService: ApiServiceService){}
@@ -27,6 +29,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
+  // carregar mais personagens
+  changePage():void {
+    console.log("Passou no botão")
+    this.apiServiceSubscription = this.apiService.changePage(this.pageCount).subscribe((res) =>{
+      console.log(this.characters = res.results)
+      this.pageCount++
+    })
+  }
+
+  // pegando a localização de um personagem
+  getLocation(characterById: number):void{
+    this.apiServiceSubscription = this.apiService.getAllCharacters().subscribe((res)=> {
+      const character = res.results.find((char:any) => char.id === characterById);
+      console.log(character)
+    });
+  }
+
   ngOnDestroy(): void {
     this.apiServiceSubscription && this.apiServiceSubscription.unsubscribe()
   }
@@ -37,6 +56,23 @@ export class HomeComponent implements OnInit, OnDestroy {
    Isso é uma precaução para garantir que você não tente chamar unsubscribe() em uma referência nula,
    o que poderia resultar em um erro.
   */
-
-
 }
+
+
+
+  // getLocation(id: number): void {
+  //   this.apiService.getLocation(id).subscribe((res)=> {
+  //     this.location = res;
+  //     this.openModal();
+  //     console.log(this.location)
+  //   })
+  // }
+
+  // openModal():void {
+  //   Swal.fire({
+  //     title: 'Localização',
+  //     html:JSON.stringify(this.location),
+  //     icon: "info",
+  //     confirmButtonText: "Fechar"
+  //   })
+  // }
